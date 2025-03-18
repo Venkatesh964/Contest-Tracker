@@ -1,12 +1,18 @@
-import { useState } from "react";
-import { Button } from "./Button";
+import { useContext } from "react";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
+import { ThemeContext, UpdateThemeContext } from "../context/theme";
 
 export const Appbar = () => {
-  const [dark, setDarkTheme] = useState(false);
-  const handleDarkTheme = () => {
-    setDarkTheme((theme) => !theme);
-  };
+  // console.log(darkTheme);
+  // console.log(theme);x
+  // const handleDarkTheme = () => {
+  //   setDarkTheme((theme) => !theme);
+  // };
+
+  // const toggleTheme = useContext(UpdateThemeContext);
+  // console.log(toggleTheme);
+  const darkTheme = true;
+
   return (
     <div className="border-b border-slate-300  shadow-md py-4">
       <div className="flex justify-between  max-w-7xl mx-auto">
@@ -26,26 +32,19 @@ export const Appbar = () => {
         </div>
         <div
           className="flex items-center cursor-pointer"
-          onClick={handleDarkTheme}
+          // onClick={toggleTheme}
         >
-          {/* <MoonSvg /> */}
-          <Button
-            children={"Codeforces"}
-            onClick={function (): void {
-              throw new Error("Function not implemented.");
-            }}
-            color={"bg-green-500"}
-          />
-          {/* <div>
-            <MoonIcon className="size-6 text-blue-500" />
-          </div> */}
-
-          {dark ? (
+          {darkTheme ? (
             <MoonIcon className="size-6" />
           ) : (
             <SunIcon className="size-6" />
           )}
         </div>
+        {/* <MoonSvg /> */}
+
+        {/* <div>
+            <MoonIcon className="size-6 text-blue-500" />
+          </div> */}
       </div>
     </div>
   );

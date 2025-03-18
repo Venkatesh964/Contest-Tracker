@@ -49,8 +49,8 @@ export const ContestCard = ({ contest }: { contest: contest }) => {
       ? Math.floor(timeInHours) + " h "
       : "" + (Number(contest.duration) - Math.floor(timeInHours)) + " m ";
   return (
-    <div className="col-span-3">
-      <div className="border border-slate-300 shadow-md rounded-md p-4">
+    <div className="col-span-3 ">
+      <div className="border border-slate-100 shadow-md rounded-lg p-4">
         <div className="flex justify-between px-0.5">
           <div className="flex flex-wrap gap-2 ">
             <Button2
@@ -79,7 +79,7 @@ export const ContestCard = ({ contest }: { contest: contest }) => {
             {<BookmarkIcon className="size-4" />}
           </div>
         </div>
-        <div className="text-lg font-bold py-3">{contest.title} </div>
+        <div className="text-lg font-bold py-3 ">{contest.title} </div>
         <div className="flex gap-2 py-1">
           <div className="flex items-center">
             <CalendarDaysIcon className="text-blue-400 size-4" />
@@ -97,12 +97,14 @@ export const ContestCard = ({ contest }: { contest: contest }) => {
         </div>
         <div className="flex gap-1 pt-2">
           <div className="text-slate-500">Duration : </div>
+          <div className="pb-2">{duration}</div>
         </div>
-        <div className="pb-2">{duration}</div>
+
         <div className="py-2">
           <a
-            className="border border-slate-100 bg-blue-400 text-white flex gap-2 rounded-md px-2 py-1 cursor-pointer"
+            className="border border-slate-100 bg-blue-400 text-white flex justify-center items-center gap-2 rounded-md px-2 py-1 cursor-pointer"
             href={contest.url}
+            target="_blank"
           >
             <div className="flex items-center">
               <TrophyIcon className="size-4" />

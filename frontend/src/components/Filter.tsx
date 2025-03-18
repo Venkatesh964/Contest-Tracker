@@ -1,7 +1,23 @@
 import { FunnelIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 import { Button2 } from "./Button2";
 
-export const Filter = () => {
+export const Filter = ({
+  filters,
+  setFilters,
+}: {
+  filters: {
+    codeforces: boolean;
+    codechef: boolean;
+    leetcode: boolean;
+  };
+  setFilters: React.Dispatch<
+    React.SetStateAction<{
+      codeforces: boolean;
+      codechef: boolean;
+      leetcode: boolean;
+    }>
+  >;
+}) => {
   return (
     <div className="w-3/14">
       <div className=" border border-slate-200 rounded-md p-3 ">
@@ -18,18 +34,39 @@ export const Filter = () => {
           <div className="flex flex-wrap gap-1">
             <Button2
               children={"Codeforces"}
-              onClick={() => console.log("hello")}
-              color={"bg-blue-500 text-white"}
+              onClick={() => {
+                setFilters((prevFilter) => ({
+                  ...prevFilter,
+                  codeforces: !prevFilter.codeforces,
+                }));
+              }}
+              color={`${
+                filters.codeforces ? "bg-blue-500" : "bg-blue-200"
+              }  text-white`}
             />
             <Button2
               children={"CodeChef"}
-              onClick={() => console.log("hello")}
-              color={"bg-green-500 text-white"}
+              onClick={() => {
+                setFilters((prevFilter) => ({
+                  ...prevFilter,
+                  codechef: !prevFilter.codechef,
+                }));
+              }}
+              color={`${
+                filters.codechef ? "bg-green-500" : "bg-green-200"
+              }  text-white`}
             />
             <Button2
               children={"Leetcode"}
-              onClick={() => console.log("hello")}
-              color={"bg-orange-500 text-white"}
+              onClick={() => {
+                setFilters((prevFilter) => ({
+                  ...prevFilter,
+                  leetcode: !prevFilter.leetcode,
+                }));
+              }}
+              color={`${
+                filters.leetcode ? "bg-orange-500" : "bg-orange-200"
+              }  text-white`}
             />
           </div>
           <div className="text-sm text-slate-400 pt-2 pb-1">Status</div>
