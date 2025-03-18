@@ -1,22 +1,27 @@
 import { createContext, useState } from "react";
 
-type themeUpdate = () => void;
+type ThemeContextProps = {
+  children: React.ReactNode;
+};
 
-//@ts-ignore
-export const ThemeContext = createContext();
-export const UpdateThemeContext = createContext<themeUpdate>(() => {});
+const defaultContext = {
+  isDarkMode: false,
+  toggleColorMode: () => {},
+};
+
+export const ThemeContext = createContext(defaultContext);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [darkTheme, setDarkTheme] = useState(false);
-
-  const toggleTheme = () => {
-    setDarkTheme((theme) => !theme);
-  };
+  const [isDarkMode, setDarkMode] = useState(defaultContext.isDarkMode);
 
   return (
-    <ThemeContext.Provider value={{ darkTheme, toggleTheme }}>
+    <ThemeContext.Provider
+      value={{
+        isDarkMode,
+        toggleColorMode: () => setDarkMode((isDark) => !isDark),
+      }}
+    >
       {children}
-      {/* <UpdateThemeContext value={toggleTheme}>{children}</UpdateThemeContext> */}
     </ThemeContext.Provider>
   );
 };

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
-import { ThemeContext, UpdateThemeContext } from "../context/theme";
+import { ThemeContext } from "../context/theme";
 
 export const Appbar = () => {
   // console.log(darkTheme);
@@ -11,7 +11,8 @@ export const Appbar = () => {
 
   // const toggleTheme = useContext(UpdateThemeContext);
   // console.log(toggleTheme);
-  const darkTheme = true;
+  const { isDarkMode, toggleColorMode } = useContext(ThemeContext);
+  console.log(isDarkMode);
 
   return (
     <div className="border-b border-slate-300  shadow-md py-4">
@@ -32,9 +33,9 @@ export const Appbar = () => {
         </div>
         <div
           className="flex items-center cursor-pointer"
-          // onClick={toggleTheme}
+          onClick={toggleColorMode}
         >
-          {darkTheme ? (
+          {isDarkMode ? (
             <MoonIcon className="size-6" />
           ) : (
             <SunIcon className="size-6" />
